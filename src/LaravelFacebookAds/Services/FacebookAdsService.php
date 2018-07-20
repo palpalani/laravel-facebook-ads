@@ -30,12 +30,12 @@ class FacebookAdsService implements FacebookAdsServiceInterface
     /**
      * Get new Facebook API instance
      *
-     * @param null $accountName
      * @param null $accessToken
+     * @param null $accountName
      * @return Api|null
      * @throws InvalidAccountException
      */
-    public function instance($accountName = null, $accessToken = null)
+    public function instance($accessToken = null, $accountName = null)
     {
         // Select default account if no account is present
         if (!$accountName) {
