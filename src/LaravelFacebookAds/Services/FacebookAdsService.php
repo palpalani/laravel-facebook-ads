@@ -31,10 +31,11 @@ class FacebookAdsService implements FacebookAdsServiceInterface
      * Get new Facebook API instance
      *
      * @param null $accountName
+     * @param null $accessToken
      * @return Api|null
      * @throws InvalidAccountException
      */
-    public function instance($accountName = null)
+    public function instance($accountName = null, $accessToken = null)
     {
         // Select default account if no account is present
         if (!$accountName) {
@@ -43,10 +44,15 @@ class FacebookAdsService implements FacebookAdsServiceInterface
 
         $account = $this->getAccount($accountName);
 
+        // Select default account if no account is present
+        if (!$accessToken) {
+            $accessToken = $account->getToken();
+        }
+
         return $this->instanceWithAuth(
             $account->getAppId(),
             $account->getAppSecret(),
-            $account->getToken()
+            $accessToken
         );
     }
 
